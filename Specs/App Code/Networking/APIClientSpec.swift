@@ -11,16 +11,24 @@ class APIClientSpec: QuickSpec {
 
             beforeEach {
                 fakeURLSession = FakeURLSession(configuration: .default)
-                
-                subject = APIClient(baseURL: URL(string: "https://ryan.codes")!, urlSession: fakeURLSession)
             }
             
             it("is built with default url session configuration") {
                 expect(fakeURLSession.capturedInitConfiguration).to(equal(.default))
             }
             
+            it("is built with constant baseURLString with empty init") {
+                subject = APIClient(urlSession: fakeURLSession)
+                
+                expect(subject.baseURL).to(equal(URL(string: "https://s3.amazonaws.com")!))
+            }
+            
             describe("#get(endpoint:completionHandler:)") {
                 var capturedResult: Result<Any, APIClientError>!
+                
+                beforeEach {
+                    subject = APIClient(baseURL: URL(string: "https://ryan.codes")!, urlSession: fakeURLSession)
+                }
                 
                 it("loads up the URLSession with the correct url") {
                     subject.get(endpoint: "/not-a-real-endpoint") { _ in }

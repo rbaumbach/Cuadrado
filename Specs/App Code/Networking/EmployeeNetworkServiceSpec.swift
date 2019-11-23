@@ -6,9 +6,13 @@ class EmployeeNetworkServiceSpec: QuickSpec {
     override func spec() {
         describe("EmployeeNetworkService") {
             var subject: EmployeeNetworkService!
-
+            
+            var fakeAPIClient: FakeAPIClient!
+            
             beforeEach {
-                subject = EmployeeNetworkService()
+                fakeAPIClient = FakeAPIClient()
+
+                subject = EmployeeNetworkService(apiClient: fakeAPIClient)
             }
             
             it("exists") {

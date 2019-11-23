@@ -1,5 +1,9 @@
 import Foundation
 
+struct APIClientConstants {
+    static let baseURLString = "https://s3.amazonaws.com"
+}
+
 enum APIClientError: Error {
     case sessionError
     case statusCodeError
@@ -10,13 +14,18 @@ protocol APIClientProtocol {
     func get(endpoint: String, completionHandler: @escaping (Result<Any, APIClientError>) -> Void)
 }
 
-class APIClient {
+class APIClient: APIClientProtocol {
     // MARK: -
     
     let baseURL: URL
     let urlSession: URLSessionProtocol
     
     // MARK: - Init method
+    
+    init(urlSession: URLSessionProtocol = URLSession(configuration: .default)) {
+        self.baseURL = URL(string: APIClientConstants.baseURLString)!
+        self.urlSession = urlSession
+    }
     
     init(baseURL: URL, urlSession: URLSessionProtocol = URLSession(configuration: .default)) {
         self.baseURL = baseURL
