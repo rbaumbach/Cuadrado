@@ -1,3 +1,8 @@
 import UIKit
 
-class CuadradoViewController: UIViewController { }
+class CuadradoViewController: UIViewController {
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+}

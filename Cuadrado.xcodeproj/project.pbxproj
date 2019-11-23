@@ -16,6 +16,8 @@
 		9404875C23896D75003F6F34 /* CuadradoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9404875B23896D75003F6F34 /* CuadradoViewController.storyboard */; };
 		9404875E23896D83003F6F34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9404875D23896D83003F6F34 /* LaunchScreen.storyboard */; };
 		9404876F23896E93003F6F34 /* AppDelegateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404876E23896E93003F6F34 /* AppDelegateSpec.swift */; };
+		94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94048772238974D9003F6F34 /* CuadradoViewControllerSpec.swift */; };
+		9404877C23897584003F6F34 /* SpecUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404877B23897584003F6F34 /* SpecUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		9404876323896DF2003F6F34 /* Specs.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9404876723896DF3003F6F34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9404876E23896E93003F6F34 /* AppDelegateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateSpec.swift; sourceTree = "<group>"; };
+		94048772238974D9003F6F34 /* CuadradoViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuadradoViewControllerSpec.swift; sourceTree = "<group>"; };
+		9404877B23897584003F6F34 /* SpecUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecUtils.swift; sourceTree = "<group>"; };
 		BE27CDA7005C4C17A1AD609F /* Pods_Specs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Specs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B8913F5989B3882E6E1304 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2C5A31A81AF3FFDC42C5B9 /* Pods_Cuadrado.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuadrado.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +152,7 @@
 			children = (
 				9404877123896ED3003F6F34 /* App Code */,
 				9404877023896EC7003F6F34 /* App Launch */,
+				9404877A23897579003F6F34 /* Spec Utils */,
 				9404876D23896DFE003F6F34 /* Supporting Files */,
 			);
 			path = Specs;
@@ -172,8 +177,17 @@
 		9404877123896ED3003F6F34 /* App Code */ = {
 			isa = PBXGroup;
 			children = (
+				94048772238974D9003F6F34 /* CuadradoViewControllerSpec.swift */,
 			);
 			path = "App Code";
+			sourceTree = "<group>";
+		};
+		9404877A23897579003F6F34 /* Spec Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9404877B23897584003F6F34 /* SpecUtils.swift */,
+			);
+			path = "Spec Utils";
 			sourceTree = "<group>";
 		};
 		B3991D106CF7649889963553 /* Pods */ = {
@@ -364,6 +378,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9404877C23897584003F6F34 /* SpecUtils.swift in Sources */,
+				94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */,
 				9404876F23896E93003F6F34 /* AppDelegateSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
