@@ -5,10 +5,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 target "Cuadrado" do
-  shared_pods
 end
 
-# target "Specs" do
-#   pod "Quick"
-#   pod "Nimble"
-# end
+target "Specs" do
+  pod "Quick"
+  pod "Nimble"
+end
