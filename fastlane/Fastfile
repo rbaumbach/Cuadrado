@@ -1,81 +1,13 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:ios)
 
 platform :ios do
 
   desc "Run specs"
   lane :specs do
-    scan(scheme: "Arbol",
+    scan(scheme: "Cuadrado",
          clean: true,
          configuration: "Debug",
          output_style: "rspec")
-  end
-
-  desc "Bump build and push to Github"
-  lane :bump_build do
-    UI.user_error!("Builds can only be bumped on the master branch") if !git_branch.eql? "master"
-
-    release_build_number = increment_build_number
-
-    commit_message = "Fastlane - Bump build to #{release_build_number}"
-
-    git_commit(message: commit_message,
-               path: ".")
-
-    push_to_git_remote
-  end
-
-  desc "Bump version and push to Github"
-  lane :bump_version do
-    UI.user_error!("Versions can only be bumped on the master branch") if !git_branch.eql? "master"
-
-    release_version_number = increment_version_number
-
-    commit_message = "Fastlane - Bump version to #{release_version_number}"
-
-    git_commit(message: commit_message,
-               path: ".")
-
-    push_to_git_remote
-  end
-
-  desc "Submit a new beta build to Apple TestFlight"
-  lane :beta_app_release do
-    UI.user_error!("Builds can only be submitted to Test Flight on the master branch") if !git_branch.eql? "master"
-
-    gym(scheme: "Arbol",
-        xcpretty_test_format: true)
-    pilot(skip_waiting_for_build_processing: true)
-  end
-
-  desc "Handle Apple Certificates and Provisioning Profiles"
-  lane :handle_certs_and_profiles do
-    cert_types = ["development", "appstore"]
-
-    cert_types.each do |type|
-      match(type: type,
-            shallow_clone: true)
-    end
-  end
-
-  desc "Delete artifacts"
-  desc "Arbol.app.dSYM.zip, Arbol.ipa"
-  lane :remove_artifacts do
-    sh "cd .. && rm -rf *.dSYM.zip *.ipa"
   end
 
 end
