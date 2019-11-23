@@ -19,17 +19,22 @@ class APIClient: APIClientProtocol {
     
     let baseURL: URL
     let urlSession: URLSessionProtocol
+    let dispatcher: DispatcherProtocol
     
-    // MARK: - Init method
+    // MARK: - Init methods
     
-    init(urlSession: URLSessionProtocol = URLSession(configuration: .default)) {
-        self.baseURL = URL(string: APIClientConstants.baseURLString)!
-        self.urlSession = urlSession
+    convenience init() {
+        let defaultBaseURL = URL(string: APIClientConstants.baseURLString)!
+        
+        self.init(baseURL: defaultBaseURL)
     }
     
-    init(baseURL: URL, urlSession: URLSessionProtocol = URLSession(configuration: .default)) {
+    init(baseURL: URL,
+         urlSession: URLSessionProtocol = URLSession(configuration: .default),
+         dispatcher: DispatcherProtocol = Dispatcher()) {
         self.baseURL = baseURL
         self.urlSession = urlSession
+        self.dispatcher = dispatcher
     }
     
     // MARK: - Public methods
@@ -47,28 +52,40 @@ class APIClient: APIClientProtocol {
     }
     
     private func buildAndExecuteDataTask(url: URL, completionHandler: @escaping (Result<Any, APIClientError>) -> Void) {
-        let dataTask = urlSession.dataTask(with: url) { data, response, error in
+        let dataTask = urlSession.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else {
+                return
+            }
+            
             guard let response = response as? HTTPURLResponse else {
-                completionHandler(.failure(.sessionError))
+                self.dispatcher.mainAsync {
+                    completionHandler(.failure(.sessionError))
+                }
                 
                 return
             }
             
             guard let data = data else {
-                completionHandler(.failure(.sessionError))
+                self.dispatcher.mainAsync {
+                    completionHandler(.failure(.sessionError))
+                }
                 
                 return
             }
             
             guard error == nil else {
-                completionHandler(.failure(.sessionError))
+                self.dispatcher.mainAsync {
+                    completionHandler(.failure(.sessionError))
+                }
                 
                 return
             }
             
             guard response.statusCode == 200 else {
-                completionHandler(.failure(.statusCodeError))
-
+                self.dispatcher.mainAsync {
+                    completionHandler(.failure(.statusCodeError))
+                }
+                
                 return
             }
             
@@ -77,8 +94,10 @@ class APIClient: APIClientProtocol {
 
                 return
             }
-
-            completionHandler(.success(jsonResponse))
+            
+            self.dispatcher.mainAsync {
+                completionHandler(.success(jsonResponse))
+            }
         }
         
         dataTask.resume()

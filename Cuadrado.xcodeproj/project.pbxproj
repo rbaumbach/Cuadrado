@@ -31,6 +31,8 @@
 		9421A2EA2389C20C00E5982F /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E92389C20C00E5982F /* FakeAPIClient.swift */; };
 		9421A2EC2389C3CF00E5982F /* FakeEmployeeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */; };
 		9421A2EE2389E97200E5982F /* FakeEmployeeDeserialzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */; };
+		9421A2F22389F16200E5982F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2F12389F16200E5982F /* Utils.swift */; };
+		9421A2F42389F18500E5982F /* FakeDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2F32389F18500E5982F /* FakeDispatcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		9421A2E92389C20C00E5982F /* FakeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPIClient.swift; sourceTree = "<group>"; };
 		9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmployeeNetworkService.swift; sourceTree = "<group>"; };
 		9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmployeeDeserialzer.swift; sourceTree = "<group>"; };
+		9421A2F12389F16200E5982F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		9421A2F32389F18500E5982F /* FakeDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDispatcher.swift; sourceTree = "<group>"; };
 		BE27CDA7005C4C17A1AD609F /* Pods_Specs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Specs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B8913F5989B3882E6E1304 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2C5A31A81AF3FFDC42C5B9 /* Pods_Cuadrado.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuadrado.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,11 +171,11 @@
 		9404875A23896D3F003F6F34 /* App Code */ = {
 			isa = PBXGroup;
 			children = (
-				9404875B23896D75003F6F34 /* CuadradoViewController.storyboard */,
-				940487472388ACDE003F6F34 /* CuadradoViewController.swift */,
+				9421A2F02389F14E00E5982F /* View Controllers */,
 				9404877D23899BEB003F6F34 /* Models */,
 				940487852389A0CF003F6F34 /* Networking */,
 				9421A2D42389AAD600E5982F /* Protocols */,
+				9421A2EF2389F13100E5982F /* Utils */,
 			);
 			path = "App Code";
 			sourceTree = "<group>";
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				9421A2E92389C20C00E5982F /* FakeAPIClient.swift */,
+				9421A2F32389F18500E5982F /* FakeDispatcher.swift */,
 				9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */,
 				9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */,
 				9421A2D82389AB8200E5982F /* FakeURLSession.swift */,
@@ -275,6 +280,23 @@
 				9421A2E72389C1C100E5982F /* EmployeeNetworkServiceSpec.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		9421A2EF2389F13100E5982F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9421A2F12389F16200E5982F /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9421A2F02389F14E00E5982F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9404875B23896D75003F6F34 /* CuadradoViewController.storyboard */,
+				940487472388ACDE003F6F34 /* CuadradoViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		B3991D106CF7649889963553 /* Pods */ = {
@@ -457,6 +479,7 @@
 			files = (
 				9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */,
 				940487482388ACDE003F6F34 /* CuadradoViewController.swift in Sources */,
+				9421A2F22389F16200E5982F /* Utils.swift in Sources */,
 				9421A2E62389C17E00E5982F /* EmployeeNetworkService.swift in Sources */,
 				9404877F23899C14003F6F34 /* Employee.swift in Sources */,
 				940487442388ACDE003F6F34 /* AppDelegate.swift in Sources */,
@@ -479,6 +502,7 @@
 				9421A2E42389BEE800E5982F /* EmployeeDeserialzerSpec.swift in Sources */,
 				94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */,
 				9404876F23896E93003F6F34 /* AppDelegateSpec.swift in Sources */,
+				9421A2F42389F18500E5982F /* FakeDispatcher.swift in Sources */,
 				9421A2EC2389C3CF00E5982F /* FakeEmployeeNetworkService.swift in Sources */,
 				9421A2D92389AB8200E5982F /* FakeURLSession.swift in Sources */,
 			);

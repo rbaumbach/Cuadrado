@@ -8,9 +8,11 @@ class APIClientSpec: QuickSpec {
             var subject: APIClient!
             
             var fakeURLSession: FakeURLSession!
+            var fakeDispatcher: FakeDispatcher!
 
             beforeEach {
                 fakeURLSession = FakeURLSession(configuration: .default)
+                fakeDispatcher = FakeDispatcher()
             }
             
             it("is built with default url session configuration") {
@@ -18,7 +20,7 @@ class APIClientSpec: QuickSpec {
             }
             
             it("is built with constant baseURLString with empty init") {
-                subject = APIClient(urlSession: fakeURLSession)
+                subject = APIClient()
                 
                 expect(subject.baseURL).to(equal(URL(string: "https://s3.amazonaws.com")!))
             }
@@ -27,7 +29,9 @@ class APIClientSpec: QuickSpec {
                 var capturedResult: Result<Any, APIClientError>!
                 
                 beforeEach {
-                    subject = APIClient(baseURL: URL(string: "https://ryan.codes")!, urlSession: fakeURLSession)
+                    subject = APIClient(baseURL: URL(string: "https://ryan.codes")!,
+                                        urlSession: fakeURLSession,
+                                        dispatcher: fakeDispatcher)
                 }
                 
                 it("loads up the URLSession with the correct url") {
@@ -46,14 +50,17 @@ class APIClientSpec: QuickSpec {
                             let fakeData = Data("fakeData".utf8)
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, nil, nil)
+                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
                         }
                         
-                        it("returns a result that has an sessionError") {
+                        it("returns a result that has an sessionError on main queue") {
                             do {
                                 _ = try capturedResult.get()
                             } catch {
                                 expect(error).to(matchError(APIClientError.sessionError))
                             }
+                            
+                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                     
@@ -66,6 +73,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse()
                             
                             fakeURLSession.capturedCompletionHandler?(nil, fakeHTTPURLResponse, nil)
+                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an sessionError") {
@@ -74,6 +82,8 @@ class APIClientSpec: QuickSpec {
                             } catch {
                                 expect(error).to(matchError(APIClientError.sessionError))
                             }
+                            
+                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                     
@@ -87,6 +97,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse()
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, FakeURLSessionError.whocares)
+                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an sessionError") {
@@ -95,9 +106,11 @@ class APIClientSpec: QuickSpec {
                             } catch {
                                 expect(error).to(matchError(APIClientError.sessionError))
                             }
+                            
+                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
-                    
+
                     describe("on a non-200 status code") {
                         beforeEach {
                             subject.get(endpoint: "/not-a-real-endpoint") { result in
@@ -108,6 +121,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse(url: URL(string: "https://whocares.com")!, statusCode: 999, httpVersion: "1.1", headerFields: nil)
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, nil)
+                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an statusErrorCode") {
@@ -116,6 +130,8 @@ class APIClientSpec: QuickSpec {
                             } catch {
                                 expect(error).to(matchError(APIClientError.statusCodeError))
                             }
+                            
+                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                     
@@ -129,6 +145,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse(url: URL(string: "https://whocares.com")!, statusCode: 999, httpVersion: "1.1", headerFields: nil)
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, nil)
+                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an statusErrorCode") {
@@ -137,30 +154,40 @@ class APIClientSpec: QuickSpec {
                             } catch {
                                 expect(error).to(matchError(APIClientError.statusCodeError))
                             }
+                            
+                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                 }
                 
                 describe("on success") {
+                    var capturedResult: Result<Any, APIClientError>!
+                    
                     beforeEach {
                         subject.get(endpoint: "/not-a-real-endpoint") { result in
                             capturedResult = result
                         }
                         
                         let fakeData = createData(dict: ["yay": "sir"])
-                        let fakeHTTPURLResponse = HTTPURLResponse(url: URL(string: "https://whocares.com")!, statusCode: 200, httpVersion: "1.1", headerFields: nil)
+                        let fakeHTTPURLResponse = HTTPURLResponse(url: URL(string: "https://whocares.com")!,
+                                                                  statusCode: 200,
+                                                                  httpVersion: "1.1",
+                                                                  headerFields: nil)
                         
                         fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, nil)
+                        fakeDispatcher.capturedMainAsyncCompletionHandler?()
                     }
                     
-                    it("returns a result with a json response (dictionary)") {
+                    it("returns a result with a json response (dictionary) on the main queue") {
                         do {
                             let jsonResponse = try capturedResult.get() as! [String: String]
-                            
+
                             expect(jsonResponse).to(equal(["yay": "sir"]))
                         } catch {
                             XCTFail("Your jsonResponse success case is failing")
                         }
+                        
+                        expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
                     }
                 }
             }

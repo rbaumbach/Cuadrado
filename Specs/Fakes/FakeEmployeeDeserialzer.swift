@@ -12,13 +12,13 @@ class FakeEmployeeDeserializer: EmployeeDeserialzerProtocol {
         let employeePhoto1 = EmployeePhoto()
         let employeeType1 = EmployeeType.fullTime
         
-        let employee1 = Employee(id: "123", fullname: "Billy", phoneNumber: "333-333-3333", email: "billy@goat.com", biography: "Just an ordinary billy goat",
+        let employee1 = Employee(id: "123", fullname: "Billy Goat", phoneNumber: "333-333-3333", email: "billy@goat.com", biography: "Just an ordinary billy goat",
                                  photo: employeePhoto1, team: "horns", type: employeeType1)
         
         let employeePhoto2 = EmployeePhoto()
         let employeeType2 = EmployeeType.contractor
         
-        let employee2 = Employee(id: "456", fullname: "Ram", phoneNumber: "444-444-4444", email: "ram@goat.com", biography: "A goat with rams",
+        let employee2 = Employee(id: "456", fullname: "Ram Goat", phoneNumber: "444-444-4444", email: "ram@goat.com", biography: "A goat with rams",
                                  photo: employeePhoto2, team: "horns", type: employeeType2)
         
         return [employee1, employee2]
