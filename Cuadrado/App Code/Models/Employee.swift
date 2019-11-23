@@ -1,9 +1,9 @@
 import Foundation
 
-enum EmployeeType: Equatable {
-    case fullTime
-    case partTime
-    case contractor
+enum EmployeeType: String, Equatable {
+    case fullTime = "FULL_TIME"
+    case partTime = "PART_TIME"
+    case contractor = "CONTRACTOR"
 }
 
 struct EmployeePhoto: Equatable {
