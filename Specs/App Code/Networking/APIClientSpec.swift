@@ -22,6 +22,12 @@ class APIClientSpec: QuickSpec {
             describe("#get(endpoint:completionHandler:)") {
                 var capturedResult: Result<Any, APIClientError>!
                 
+                it("loads up the URLSession with the correct url") {
+                    subject.get(endpoint: "/not-a-real-endpoint") { _ in }
+                    
+                    expect(fakeURLSession.capturedURL).to(equal(URL(string: "https://ryan.codes/not-a-real-endpoint")!))
+                }
+                
                 describe("errors") {
                     describe("on invalid HTTPURLResponse") {
                         beforeEach {
