@@ -26,6 +26,9 @@
 		9421A2DC2389AD4400E5982F /* APIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2DB2389AD4400E5982F /* APIClientSpec.swift */; };
 		9421A2DE2389BA4100E5982F /* EmployeeDeserialzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2DD2389BA4100E5982F /* EmployeeDeserialzer.swift */; };
 		9421A2E42389BEE800E5982F /* EmployeeDeserialzerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E32389BEE800E5982F /* EmployeeDeserialzerSpec.swift */; };
+		9421A2E62389C17E00E5982F /* EmployeeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E52389C17E00E5982F /* EmployeeNetworkService.swift */; };
+		9421A2E82389C1C100E5982F /* EmployeeNetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E72389C1C100E5982F /* EmployeeNetworkServiceSpec.swift */; };
+		9421A2EA2389C20C00E5982F /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E92389C20C00E5982F /* FakeAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		9421A2DB2389AD4400E5982F /* APIClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSpec.swift; sourceTree = "<group>"; };
 		9421A2DD2389BA4100E5982F /* EmployeeDeserialzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDeserialzer.swift; sourceTree = "<group>"; };
 		9421A2E32389BEE800E5982F /* EmployeeDeserialzerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDeserialzerSpec.swift; sourceTree = "<group>"; };
+		9421A2E52389C17E00E5982F /* EmployeeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeNetworkService.swift; sourceTree = "<group>"; };
+		9421A2E72389C1C100E5982F /* EmployeeNetworkServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeNetworkServiceSpec.swift; sourceTree = "<group>"; };
+		9421A2E92389C20C00E5982F /* FakeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPIClient.swift; sourceTree = "<group>"; };
 		BE27CDA7005C4C17A1AD609F /* Pods_Specs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Specs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B8913F5989B3882E6E1304 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2C5A31A81AF3FFDC42C5B9 /* Pods_Cuadrado.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuadrado.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +239,7 @@
 			children = (
 				940487832389A0C6003F6F34 /* APIClient.swift */,
 				9421A2DD2389BA4100E5982F /* EmployeeDeserialzer.swift */,
+				9421A2E52389C17E00E5982F /* EmployeeNetworkService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 		9421A2D72389AB7500E5982F /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
+				9421A2E92389C20C00E5982F /* FakeAPIClient.swift */,
 				9421A2D82389AB8200E5982F /* FakeURLSession.swift */,
 			);
 			path = Fakes;
@@ -258,6 +266,7 @@
 			children = (
 				9421A2DB2389AD4400E5982F /* APIClientSpec.swift */,
 				9421A2E32389BEE800E5982F /* EmployeeDeserialzerSpec.swift */,
+				9421A2E72389C1C100E5982F /* EmployeeNetworkServiceSpec.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -442,6 +451,7 @@
 			files = (
 				9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */,
 				940487482388ACDE003F6F34 /* CuadradoViewController.swift in Sources */,
+				9421A2E62389C17E00E5982F /* EmployeeNetworkService.swift in Sources */,
 				9404877F23899C14003F6F34 /* Employee.swift in Sources */,
 				940487442388ACDE003F6F34 /* AppDelegate.swift in Sources */,
 				940487842389A0C6003F6F34 /* APIClient.swift in Sources */,
@@ -455,7 +465,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9404878223899E2E003F6F34 /* EmployeeSpec.swift in Sources */,
+				9421A2EA2389C20C00E5982F /* FakeAPIClient.swift in Sources */,
 				9404877C23897584003F6F34 /* SpecUtils.swift in Sources */,
+				9421A2E82389C1C100E5982F /* EmployeeNetworkServiceSpec.swift in Sources */,
 				9421A2DC2389AD4400E5982F /* APIClientSpec.swift in Sources */,
 				9421A2E42389BEE800E5982F /* EmployeeDeserialzerSpec.swift in Sources */,
 				94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */,
