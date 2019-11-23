@@ -20,6 +20,10 @@
 		9404877C23897584003F6F34 /* SpecUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404877B23897584003F6F34 /* SpecUtils.swift */; };
 		9404877F23899C14003F6F34 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404877E23899C14003F6F34 /* Employee.swift */; };
 		9404878223899E2E003F6F34 /* EmployeeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404878123899E2E003F6F34 /* EmployeeSpec.swift */; };
+		940487842389A0C6003F6F34 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940487832389A0C6003F6F34 /* APIClient.swift */; };
+		9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2D52389AAE400E5982F /* FoundationProtocols.swift */; };
+		9421A2D92389AB8200E5982F /* FakeURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2D82389AB8200E5982F /* FakeURLSession.swift */; };
+		9421A2DC2389AD4400E5982F /* APIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2DB2389AD4400E5982F /* APIClientSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		9404877B23897584003F6F34 /* SpecUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecUtils.swift; sourceTree = "<group>"; };
 		9404877E23899C14003F6F34 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		9404878123899E2E003F6F34 /* EmployeeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeSpec.swift; sourceTree = "<group>"; };
+		940487832389A0C6003F6F34 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		9421A2D52389AAE400E5982F /* FoundationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationProtocols.swift; sourceTree = "<group>"; };
+		9421A2D82389AB8200E5982F /* FakeURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLSession.swift; sourceTree = "<group>"; };
+		9421A2DB2389AD4400E5982F /* APIClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSpec.swift; sourceTree = "<group>"; };
 		BE27CDA7005C4C17A1AD609F /* Pods_Specs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Specs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B8913F5989B3882E6E1304 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2C5A31A81AF3FFDC42C5B9 /* Pods_Cuadrado.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuadrado.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,9 +153,11 @@
 		9404875A23896D3F003F6F34 /* App Code */ = {
 			isa = PBXGroup;
 			children = (
-				9404877D23899BEB003F6F34 /* Models */,
 				9404875B23896D75003F6F34 /* CuadradoViewController.storyboard */,
 				940487472388ACDE003F6F34 /* CuadradoViewController.swift */,
+				9404877D23899BEB003F6F34 /* Models */,
+				940487852389A0CF003F6F34 /* Networking */,
+				9421A2D42389AAD600E5982F /* Protocols */,
 			);
 			path = "App Code";
 			sourceTree = "<group>";
@@ -155,6 +165,7 @@
 		9404876423896DF3003F6F34 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				9421A2D72389AB7500E5982F /* Fakes */,
 				9404877123896ED3003F6F34 /* App Code */,
 				9404877023896EC7003F6F34 /* App Launch */,
 				9404877A23897579003F6F34 /* Spec Utils */,
@@ -182,6 +193,7 @@
 		9404877123896ED3003F6F34 /* App Code */ = {
 			isa = PBXGroup;
 			children = (
+				9421A2DA2389AD3300E5982F /* Networking */,
 				9404878023899E21003F6F34 /* Models */,
 				94048772238974D9003F6F34 /* CuadradoViewControllerSpec.swift */,
 			);
@@ -210,6 +222,38 @@
 				9404878123899E2E003F6F34 /* EmployeeSpec.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		940487852389A0CF003F6F34 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				940487832389A0C6003F6F34 /* APIClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9421A2D42389AAD600E5982F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9421A2D52389AAE400E5982F /* FoundationProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9421A2D72389AB7500E5982F /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				9421A2D82389AB8200E5982F /* FakeURLSession.swift */,
+			);
+			path = Fakes;
+			sourceTree = "<group>";
+		};
+		9421A2DA2389AD3300E5982F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9421A2DB2389AD4400E5982F /* APIClientSpec.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		B3991D106CF7649889963553 /* Pods */ = {
@@ -390,9 +434,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */,
 				940487482388ACDE003F6F34 /* CuadradoViewController.swift in Sources */,
 				9404877F23899C14003F6F34 /* Employee.swift in Sources */,
 				940487442388ACDE003F6F34 /* AppDelegate.swift in Sources */,
+				940487842389A0C6003F6F34 /* APIClient.swift in Sources */,
 				940487462388ACDE003F6F34 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,8 +449,10 @@
 			files = (
 				9404878223899E2E003F6F34 /* EmployeeSpec.swift in Sources */,
 				9404877C23897584003F6F34 /* SpecUtils.swift in Sources */,
+				9421A2DC2389AD4400E5982F /* APIClientSpec.swift in Sources */,
 				94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */,
 				9404876F23896E93003F6F34 /* AppDelegateSpec.swift in Sources */,
+				9421A2D92389AB8200E5982F /* FakeURLSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

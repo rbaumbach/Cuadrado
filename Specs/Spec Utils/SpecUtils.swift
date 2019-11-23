@@ -9,3 +9,7 @@ func loadStoryboard<T: UIViewController>(name: String) -> T {
     
     return viewController
 }
+
+func createData(dict: Any) -> Data {
+    return try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+}
