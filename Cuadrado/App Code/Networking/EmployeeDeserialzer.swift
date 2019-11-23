@@ -1,6 +1,10 @@
 import Foundation
 
-class EmployeeDeserialzer {
+protocol EmployeeDeserialzerProtocol {
+    func deserialize(jsonResponse: Any) -> [Employee]
+}
+
+class EmployeeDeserialzer: EmployeeDeserialzerProtocol {
     // MARK: - Public methods
     
     func deserialize(jsonResponse: Any) -> [Employee] {

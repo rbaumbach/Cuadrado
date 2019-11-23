@@ -30,6 +30,7 @@
 		9421A2E82389C1C100E5982F /* EmployeeNetworkServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E72389C1C100E5982F /* EmployeeNetworkServiceSpec.swift */; };
 		9421A2EA2389C20C00E5982F /* FakeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E92389C20C00E5982F /* FakeAPIClient.swift */; };
 		9421A2EC2389C3CF00E5982F /* FakeEmployeeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */; };
+		9421A2EE2389E97200E5982F /* FakeEmployeeDeserialzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		9421A2E72389C1C100E5982F /* EmployeeNetworkServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeNetworkServiceSpec.swift; sourceTree = "<group>"; };
 		9421A2E92389C20C00E5982F /* FakeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAPIClient.swift; sourceTree = "<group>"; };
 		9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmployeeNetworkService.swift; sourceTree = "<group>"; };
+		9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmployeeDeserialzer.swift; sourceTree = "<group>"; };
 		BE27CDA7005C4C17A1AD609F /* Pods_Specs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Specs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B8913F5989B3882E6E1304 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2C5A31A81AF3FFDC42C5B9 /* Pods_Cuadrado.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuadrado.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				9421A2E92389C20C00E5982F /* FakeAPIClient.swift */,
+				9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */,
 				9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */,
 				9421A2D82389AB8200E5982F /* FakeURLSession.swift */,
 			);
@@ -467,6 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9421A2EE2389E97200E5982F /* FakeEmployeeDeserialzer.swift in Sources */,
 				9404878223899E2E003F6F34 /* EmployeeSpec.swift in Sources */,
 				9421A2EA2389C20C00E5982F /* FakeAPIClient.swift in Sources */,
 				9404877C23897584003F6F34 /* SpecUtils.swift in Sources */,
