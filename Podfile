@@ -15,6 +15,6 @@ end
 target "Specs" do
   shared_pods
 
-  pod "Quick"
-  pod "Nimble"
+  pod "Quick", "2.2.0"
+  pod "Nimble", "8.0.4"
 end
