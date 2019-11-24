@@ -86,6 +86,110 @@ class EmployeeDeserialzerSpec: QuickSpec {
                         expect(employees).to(equal([expectedEmployee]))
                     }
                 }
+                
+                describe("malformed jsonResponses") {
+                    describe("when it can't be parsed at the very top as a [String: Any] top level dictionary") {
+                        beforeEach {
+                            jsonResponse = [5]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                    
+                    describe("when it doesn't have an 'employees' key, that contains an array of [String: Any] serialized employee objects") {
+                        beforeEach {
+                            jsonResponse = ["junk": [5]]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                    
+                    describe("when an employee obj is missing or has a malformed required uuid field") {
+                        beforeEach {
+                            jsonResponse = [ "employees" : [ [ "uuid" : 55,
+                                                               "full_name" : "Justine Mason",
+                                                               "email_address" : "jmason.demo@squareup.com",
+                                                               "team" : "Point of Sale",
+                                                               "employee_type" : "FULL_TIME" ] ] ]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                    
+                    describe("when an employee obj is missing or has a malformed required fullname field") {
+                        beforeEach {
+                            jsonResponse = [ "employees" : [ [ "uuid" : "0d8fcc12-4d0c-425c-8355-390b312b909c",
+                                                               "email_address" : "jmason.demo@squareup.com",
+                                                               "team" : "Point of Sale",
+                                                               "employee_type" : "FULL_TIME" ] ] ]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                    
+                    describe("when an employee obj is missing or has a malformed required email address field") {
+                        beforeEach {
+                            jsonResponse = [ "employees" : [ [ "uuid" : "0d8fcc12-4d0c-425c-8355-390b312b909c",
+                                                               "full_name" : "Justine Mason",
+                                                               "email_address" : 55.0000,
+                                                               "team" : "Point of Sale",
+                                                               "employee_type" : "FULL_TIME" ] ] ]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                    
+                    describe("when an employee obj is missing or has a malformed required team field") {
+                        beforeEach {
+                            jsonResponse = [ "employees" : [ [ "uuid" : "0d8fcc12-4d0c-425c-8355-390b312b909c",
+                                                               "full_name" : "Justine Mason",
+                                                               "email_address" : "jmason.demo@squareup.com",
+                                                               "employee_type" : "FULL_TIME" ] ] ]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                    
+                    describe("when an employee obj is missing or has a malformed required type field") {
+                        beforeEach {
+                            jsonResponse = [ "employees" : [ [ "uuid" : "0d8fcc12-4d0c-425c-8355-390b312b909c",
+                                                               "full_name" : "Justine Mason",
+                                                               "email_address" : "jmason.demo@squareup.com",
+                                                               "team" : "Point of Sale",
+                                                               "employee_type" : "JUNK_TYPE" ] ] ]
+                            
+                            employees = subject.deserialize(jsonResponse: jsonResponse as Any)
+                        }
+                        
+                        it("returns no employees") {
+                            expect(employees).to(beEmpty())
+                        }
+                    }
+                }
             }
         }
     }
