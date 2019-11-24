@@ -10,6 +10,14 @@ func loadStoryboard<T: UIViewController>(name: String) -> T {
     return viewController
 }
 
+func loadCustomTableViewCell<T: UITableViewCell>(name: String) -> T {
+    let nib = UINib(nibName: name, bundle: nil)
+    
+    let cell = (nib.instantiate(withOwner: nil, options: nil).first as! T)
+    
+    return cell
+}
+
 func createData(dict: Any) -> Data {
     return try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
 }
