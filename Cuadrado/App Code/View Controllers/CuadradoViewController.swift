@@ -43,6 +43,8 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     private func setup() {
         setupDataSource()
         setupTableView()
+        
+        basicStatusLabel.isHidden = false
     }
     
     private func setupDataSource() {

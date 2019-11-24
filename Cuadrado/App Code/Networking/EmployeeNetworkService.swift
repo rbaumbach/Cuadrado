@@ -8,6 +8,8 @@ class EmployeeNetworkService: EmployeeNetworkServiceProtocol {
     // MARK: - Private Constants
     
     private let endpoint = "/sq-mobile-interview/employees.json"
+//    private let endpoint = "/sq-mobile-interview/employees_empty.json"
+//    private let endpoint = "/sq-mobile-interview/employees_malformed.json"
 
     // MARK: - Private properties
     

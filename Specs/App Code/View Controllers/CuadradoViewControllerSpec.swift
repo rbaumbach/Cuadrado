@@ -35,6 +35,7 @@ class CuadradoViewControllerSpec: QuickSpec {
 
                     it("it displays proper message") {
                         expect(subject.basicStatusLabel.text).to(equal("There are no employees"))
+                        expect(subject.basicStatusLabel.isHidden).to(beFalsy())
                     }
                     
                     it("it doesn't show separator lines because there is an empty footer view") {

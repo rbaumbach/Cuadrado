@@ -20,6 +20,12 @@ class EmployeeNetworkServiceSpec: QuickSpec {
             describe("#getEmployees(completionHandler:)") {
                 var capturedResult: Result<[Employee], APIClientError>!
                 
+                it("constructs the client request to the proper endpoint") {
+                    subject.getEmployees { _ in }
+                    
+                    expect(fakeAPIClient.capturedGetEndpoint).to(equal("/sq-mobile-interview/employees.json"))
+                }
+                
                 describe("on api client success") {
                     beforeEach {
                         subject.getEmployees { result in
