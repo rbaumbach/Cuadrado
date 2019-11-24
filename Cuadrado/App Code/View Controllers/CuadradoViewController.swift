@@ -30,9 +30,7 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
-        cell.textLabel?.text = dataSource[indexPath.row].fullname
+        let cell = dequeueEmployeeTableViewCell(indexPath: indexPath)
         
         return cell
     }
@@ -58,7 +56,8 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     }
     
     private func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(EmployeeTableViewCell.nib,
+                           forCellReuseIdentifier: EmployeeTableViewCell.reuseId)
         
         tableView.tableFooterView = UIView()
     }
@@ -75,5 +74,20 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     
     private func handleFailure() {
         basicStatusLabel.isHidden = false
+    }
+    
+    private func dequeueEmployeeTableViewCell(indexPath: IndexPath) -> EmployeeTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: EmployeeTableViewCell.reuseId, for: indexPath) as! EmployeeTableViewCell
+        
+        let employee = dataSource[indexPath.row]
+        
+        cell.fullnameLabel.text = employee.fullname
+        cell.emailLabel.text = employee.email
+        cell.teamLabel.text = employee.team
+        cell.typeLabel.text = employee.type.display()
+        cell.phoneNumberLabel.text = employee.phoneNumber
+        cell.biographyLabel.text = employee.biography
+        
+        return cell
     }
 }

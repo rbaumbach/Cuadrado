@@ -4,6 +4,17 @@ enum EmployeeType: String, Equatable {
     case fullTime = "FULL_TIME"
     case partTime = "PART_TIME"
     case contractor = "CONTRACTOR"
+    
+    func display() -> String {
+        switch self {
+        case .fullTime:
+            return "Full Time"
+        case .partTime:
+            return "Part Time"
+        case .contractor:
+            return "Contractor"
+        }
+    }
 }
 
 struct EmployeePhoto: Equatable {

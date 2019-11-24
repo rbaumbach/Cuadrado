@@ -103,16 +103,22 @@ class CuadradoViewControllerSpec: QuickSpec {
                 }
                                 
                 describe("#tableView(_:cellForRowAt:)") {
-                    var tableViewCell: UITableViewCell!
+                    var employeeTableViewCell: EmployeeTableViewCell!
                     
                     beforeEach {
                         subject.dataSource = fakeDeserializer.stubbedEmployees
                         
-                        tableViewCell = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+                        employeeTableViewCell = (subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! EmployeeTableViewCell)
                     }
                     
-                    it("creates a table view cell that shows the employee name") {
-                        expect(tableViewCell.textLabel?.text).to(equal("Billy Goat"))
+                    it("returns a fully loaded employee table view cell") {
+                        expect(employeeTableViewCell.fullnameLabel.text).to(equal("Billy Goat"))
+                        expect(employeeTableViewCell.imageView).toNot(beNil())
+                        expect(employeeTableViewCell.emailLabel.text).to(equal("billy@goat.com"))
+                        expect(employeeTableViewCell.teamLabel.text).to(equal("horns"))
+                        expect(employeeTableViewCell.typeLabel.text).to(equal("Full Time"))
+                        expect(employeeTableViewCell.phoneNumberLabel.text).to(equal("333-333-3333"))
+                        expect(employeeTableViewCell.biographyLabel.text).to(equal("Just an ordinary billy goat"))
                     }
                 }
             }
