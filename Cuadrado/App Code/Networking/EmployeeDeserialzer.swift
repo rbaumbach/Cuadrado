@@ -19,28 +19,48 @@ class EmployeeDeserialzer: EmployeeDeserialzerProtocol {
         let employees = serializedEmployees.map { serialedJSONEmployee -> Employee in
             let serializedEmployee = serialedJSONEmployee as! [String: String]
             
-            let id = serializedEmployee["uuid"]!
-            let fullName = serializedEmployee["full_name"]!
-            let phoneNumber = serializedEmployee["phone_number"]!
-            let emailAddress = serializedEmployee["email_address"]!
-            let biography = serializedEmployee["biography"]!
-            let smallPhotoURLString = serializedEmployee["photo_url_small"]!
-            let largePhotoURLString = serializedEmployee["photo_url_large"]!
-            let team = serializedEmployee["team"]!
-            let typeString = serializedEmployee["employee_type"]!
+            let deserializedEmployee = deserializeEmployee(serializedEmployee: serializedEmployee)
             
-            let smallPhotoURL = URL(string: smallPhotoURLString)!
-            let largePhotoURL = URL(string: largePhotoURLString)!
-            
-            let employeePhoto = EmployeePhoto(smallURL: smallPhotoURL, largeURL: largePhotoURL)
-            let employeeType = EmployeeType(rawValue: typeString)!
-            
-            let employee = Employee(id: id, fullname: fullName, phoneNumber: phoneNumber, email: emailAddress,
-                                    biography: biography, photo: employeePhoto, team: team, type: employeeType)
-            
-            return employee
+            return deserializedEmployee
         }
         
         return employees
+    }
+    
+    private func deserializeEmployee(serializedEmployee: [String: String]) -> Employee {
+        // Required fields
+        
+        let id = serializedEmployee["uuid"]!
+        let fullName = serializedEmployee["full_name"]!
+        let emailAddress = serializedEmployee["email_address"]!
+        let team = serializedEmployee["team"]!
+        let typeString = serializedEmployee["employee_type"]!
+        let employeeType = EmployeeType(rawValue: typeString)!
+        
+        // Optional fields
+        
+        let phoneNumber = serializedEmployee["phone_number"]
+        let biography = serializedEmployee["biography"]
+        
+        var smallPhotoURL: URL?
+        if let smallPhotoURLString = serializedEmployee["photo_url_small"] {
+            smallPhotoURL = URL(string: smallPhotoURLString)
+        }
+        
+        var largePhotoURL: URL?
+        if let largePhotoURLString = serializedEmployee["photo_url_large"] {
+            largePhotoURL = URL(string: largePhotoURLString)
+        }
+        
+        let employee = Employee(id: id,
+                                fullname: fullName,
+                                phoneNumber: phoneNumber,
+                                email: emailAddress,
+                                biography: biography,
+                                smallPhotoURL: smallPhotoURL,
+                                largePhotoURL: largePhotoURL,
+                                team: team,
+                                type: employeeType)
+        return employee
     }
 }

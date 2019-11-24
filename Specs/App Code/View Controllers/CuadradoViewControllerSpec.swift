@@ -112,14 +112,13 @@ class CuadradoViewControllerSpec: QuickSpec {
                     
                     describe("when a user has a profile photo") {
                         beforeEach {
-                            let profilePhoto = EmployeePhoto(smallURL: URL(string: "https://not.a.real.photo.com/99")!)
-                            
                             let employee = Employee(id: "123",
                                                     fullname: "Billy Goat",
                                                     phoneNumber: "333-333-3333",
                                                     email: "billy@goat.com",
                                                     biography: "Just an ordinary billy goat",
-                                                    photo: profilePhoto,
+                                                    smallPhotoURL: URL(string: "https://not.a.real.photo.com/99")!,
+                                                    largePhotoURL: nil,
                                                     team: "horns",
                                                     type: .fullTime)
                             

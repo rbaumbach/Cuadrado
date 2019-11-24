@@ -91,7 +91,7 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
         cell.phoneNumberLabel.text = employee.phoneNumber
         cell.biographyLabel.text = employee.biography
         
-        if let profilePhotoSmallImageURL = employee.photo?.smallURL {
+        if let profilePhotoSmallImageURL = employee.smallPhotoURL {
             sdWebImageWrapper.getImage(url: profilePhotoSmallImageURL) { image in
                 if let image = image {
                     cell.profilePhotoImageView.image = image
