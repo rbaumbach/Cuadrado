@@ -43,8 +43,6 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     private func setup() {
         setupDataSource()
         setupTableView()
-        
-        basicStatusLabel.isHidden = false
     }
     
     private func setupDataSource() {
@@ -70,6 +68,7 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     private func handleSuccess(employees: [Employee]) {
         if employees.isEmpty {
             basicStatusLabel.text = "There are no employees"
+            basicStatusLabel.isHidden = false
             
             return
         }
