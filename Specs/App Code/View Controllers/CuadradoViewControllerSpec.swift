@@ -44,6 +44,10 @@ class CuadradoViewControllerSpec: QuickSpec {
                 it("displays an error message") {
                     expect(subject.employeesErrorLabel.isHidden).to(beFalsy())
                 }
+                
+                it("it doesn't show separator lines because there is an empty footer view") {
+                    expect(subject.tableView.tableFooterView).toNot(beNil())
+                }
             }
             
             describe("<UITableViewDataSource>") {

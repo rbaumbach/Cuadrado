@@ -59,5 +59,7 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     
     private func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        tableView.tableFooterView = UIView()
     }
 }
