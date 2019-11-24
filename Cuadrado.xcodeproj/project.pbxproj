@@ -39,6 +39,8 @@
 		9457DE7F238ACDAD00FFE049 /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457DE7D238ACDAD00FFE049 /* EmployeeTableViewCell.swift */; };
 		9457DE80238ACDAD00FFE049 /* EmployeeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9457DE7E238ACDAD00FFE049 /* EmployeeTableViewCell.xib */; };
 		9457DE83238ACDD300FFE049 /* EmployeeTableViewCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457DE82238ACDD300FFE049 /* EmployeeTableViewCellSpec.swift */; };
+		9457DE89238AE2B300FFE049 /* SDWebImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457DE88238AE2B300FFE049 /* SDWebImageWrapper.swift */; };
+		9457DE8B238AE31200FFE049 /* FakeSDWebImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457DE8A238AE31200FFE049 /* FakeSDWebImageWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		9457DE7D238ACDAD00FFE049 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		9457DE7E238ACDAD00FFE049 /* EmployeeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeTableViewCell.xib; sourceTree = "<group>"; };
 		9457DE82238ACDD300FFE049 /* EmployeeTableViewCellSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCellSpec.swift; sourceTree = "<group>"; };
+		9457DE88238AE2B300FFE049 /* SDWebImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDWebImageWrapper.swift; sourceTree = "<group>"; };
+		9457DE8A238AE31200FFE049 /* FakeSDWebImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSDWebImageWrapper.swift; sourceTree = "<group>"; };
 		BE27CDA7005C4C17A1AD609F /* Pods_Specs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Specs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B8913F5989B3882E6E1304 /* Pods-Specs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specs.debug.xcconfig"; path = "Target Support Files/Pods-Specs/Pods-Specs.debug.xcconfig"; sourceTree = "<group>"; };
 		FD2C5A31A81AF3FFDC42C5B9 /* Pods_Cuadrado.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cuadrado.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,12 +188,13 @@
 		9404875A23896D3F003F6F34 /* App Code */ = {
 			isa = PBXGroup;
 			children = (
-				9457DE7C238ACD6000FFE049 /* Views */,
-				9421A2F02389F14E00E5982F /* View Controllers */,
 				9404877D23899BEB003F6F34 /* Models */,
 				940487852389A0CF003F6F34 /* Networking */,
 				9421A2D42389AAD600E5982F /* Protocols */,
 				9421A2EF2389F13100E5982F /* Utils */,
+				9421A2F02389F14E00E5982F /* View Controllers */,
+				9457DE7C238ACD6000FFE049 /* Views */,
+				9457DE87238AE28B00FFE049 /* Wrappers */,
 			);
 			path = "App Code";
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				9421A2F32389F18500E5982F /* FakeDispatcher.swift */,
 				9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */,
 				9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */,
+				9457DE8A238AE31200FFE049 /* FakeSDWebImageWrapper.swift */,
 				94448175238A057000DB928A /* FakeStoryboardLoader.swift */,
 				9421A2D82389AB8200E5982F /* FakeURLSession.swift */,
 			);
@@ -341,6 +347,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		9457DE87238AE28B00FFE049 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				9457DE88238AE2B300FFE049 /* SDWebImageWrapper.swift */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
 		B3991D106CF7649889963553 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +377,7 @@
 				9404873C2388ACDE003F6F34 /* Sources */,
 				9404873D2388ACDE003F6F34 /* Frameworks */,
 				9404873E2388ACDE003F6F34 /* Resources */,
+				466D57DD67F6C70897EAE653 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -474,6 +489,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		466D57DD67F6C70897EAE653 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cuadrado/Pods-Cuadrado-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cuadrado/Pods-Cuadrado-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cuadrado/Pods-Cuadrado-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		52D172EE4ED2F989F3ED5E3E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,6 +555,7 @@
 				9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */,
 				940487482388ACDE003F6F34 /* CuadradoViewController.swift in Sources */,
 				9421A2F22389F16200E5982F /* Utils.swift in Sources */,
+				9457DE89238AE2B300FFE049 /* SDWebImageWrapper.swift in Sources */,
 				9421A2E62389C17E00E5982F /* EmployeeNetworkService.swift in Sources */,
 				9404877F23899C14003F6F34 /* Employee.swift in Sources */,
 				940487442388ACDE003F6F34 /* AppDelegate.swift in Sources */,
@@ -544,6 +577,7 @@
 				94448176238A057000DB928A /* FakeStoryboardLoader.swift in Sources */,
 				9421A2EA2389C20C00E5982F /* FakeAPIClient.swift in Sources */,
 				94448174238A037B00DB928A /* AppLaunchViewControllerSpec.swift in Sources */,
+				9457DE8B238AE31200FFE049 /* FakeSDWebImageWrapper.swift in Sources */,
 				9404877C23897584003F6F34 /* SpecUtils.swift in Sources */,
 				9421A2E82389C1C100E5982F /* EmployeeNetworkServiceSpec.swift in Sources */,
 				9421A2DC2389AD4400E5982F /* APIClientSpec.swift in Sources */,

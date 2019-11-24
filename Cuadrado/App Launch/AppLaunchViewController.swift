@@ -7,14 +7,16 @@ class AppLaunchViewController: UIViewController {
     
     // MARK: - Public properties
 
+    var sdWebImageWrapper: SDWebImageWrapperProtocol = SDWebImageWrapper()
     var employeeNetworkService: EmployeeNetworkServiceProtocol = EmployeeNetworkService()
     var storyboardLoader: StoryboardLoaderProtocol = StoryboardLoader()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
+        showActivityIndicator()
+        
+        sdWebImageWrapper.neverExpireImageCache()
         
         employeeNetworkService.getEmployees { [weak self] result in
             self?.activityIndicatorView.stopAnimating()
@@ -24,6 +26,11 @@ class AppLaunchViewController: UIViewController {
     }
         
     // MARK: - Private methods
+    
+    private func showActivityIndicator() {
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+    }
     
     private func presentCuadradoVieController(result: Result<[Employee], APIClientError>) {
         let cuadradoViewController = storyboardLoader.load(name: "CuadradoViewController") as! CuadradoViewController

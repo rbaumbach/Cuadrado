@@ -12,6 +12,7 @@ First, run the following commands to bundle required gems and install [Cocoapods
 
 ```bash
 $ bundle install
+$ bundle exec pod repo update
 $ bundle exec pod install
 ```
 

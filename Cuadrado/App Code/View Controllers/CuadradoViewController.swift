@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImage
 
 class CuadradoViewController: UIViewController, UITableViewDataSource {
     // MARK: - IBOutlets
@@ -10,6 +11,8 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
         
     var employeesResult: Result<[Employee], APIClientError>!
     var dataSource: [Employee] = []
+    
+    var sdWebImageWrapper: SDWebImageWrapperProtocol = SDWebImageWrapper()
         
     // MARK: - View lifecycle
     
@@ -87,6 +90,14 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
         cell.typeLabel.text = employee.type.display()
         cell.phoneNumberLabel.text = employee.phoneNumber
         cell.biographyLabel.text = employee.biography
+        
+        if let profilePhotoSmallImageURL = employee.photo?.smallURL {
+            sdWebImageWrapper.getImage(url: profilePhotoSmallImageURL) { image in
+                if let image = image {
+                    cell.profilePhotoImageView.image = image
+                }
+            }
+        }
         
         return cell
     }

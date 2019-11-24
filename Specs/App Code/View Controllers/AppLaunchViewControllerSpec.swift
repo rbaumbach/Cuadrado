@@ -7,6 +7,7 @@ class AppLaunchViewControllerSpec: QuickSpec {
         describe("AppLaunchViewController") {
             var subject: AppLaunchViewController!
             
+            var fakeSDWebImageWrapper: FakeSDWebImageWrapper!
             var fakeEmployeeNetworkService: FakeEmployeeNetworkService!
             var fakeStoryboardLoader: FakeStoryboardLoader!
             var fakeDeserializer: FakeEmployeeDeserializer!
@@ -14,9 +15,11 @@ class AppLaunchViewControllerSpec: QuickSpec {
             beforeEach {
                 subject = loadStoryboard(name: "AppLaunchViewController")
                 
+                fakeSDWebImageWrapper = FakeSDWebImageWrapper()
                 fakeEmployeeNetworkService = FakeEmployeeNetworkService()
                 fakeStoryboardLoader = FakeStoryboardLoader()
                 
+                subject.sdWebImageWrapper = fakeSDWebImageWrapper
                 subject.employeeNetworkService = fakeEmployeeNetworkService
                 subject.storyboardLoader = fakeStoryboardLoader
                 
@@ -30,6 +33,10 @@ class AppLaunchViewControllerSpec: QuickSpec {
             it("shows the activity indicator view") {
                 expect(subject.activityIndicatorView.isHidden).to(beFalsy())
                 expect(subject.activityIndicatorView.isAnimating).to(beTruthy())
+            }
+            
+            it("makes sure that SDWebImage never expires the image cache (by default it's 1 week)") {
+                expect(fakeSDWebImageWrapper.didCallNeverExpireImageCache).to(beTruthy())
             }
             
             describe("retrieving the employees") {

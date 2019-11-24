@@ -9,9 +9,14 @@ class CuadradoViewControllerSpec: QuickSpec {
             
             var fakeDeserializer: FakeEmployeeDeserializer!
             var fakeEmployeesResult: Result<[Employee], APIClientError>!
+            var fakeSDWebImageWrapper: FakeSDWebImageWrapper!
 
             beforeEach {
                 subject = loadStoryboard(name: "CuadradoViewController")
+                
+                fakeSDWebImageWrapper = FakeSDWebImageWrapper()
+                
+                subject.sdWebImageWrapper = fakeSDWebImageWrapper
                 
                 // Easy access to some generated employees
                 
@@ -105,20 +110,69 @@ class CuadradoViewControllerSpec: QuickSpec {
                 describe("#tableView(_:cellForRowAt:)") {
                     var employeeTableViewCell: EmployeeTableViewCell!
                     
-                    beforeEach {
-                        subject.dataSource = fakeDeserializer.stubbedEmployees
+                    describe("when a user has a profile photo") {
+                        beforeEach {
+                            let profilePhoto = EmployeePhoto(smallURL: URL(string: "https://not.a.real.photo.com/99")!)
+                            
+                            let employee = Employee(id: "123",
+                                                    fullname: "Billy Goat",
+                                                    phoneNumber: "333-333-3333",
+                                                    email: "billy@goat.com",
+                                                    biography: "Just an ordinary billy goat",
+                                                    photo: profilePhoto,
+                                                    team: "horns",
+                                                    type: .fullTime)
+                            
+                            subject.dataSource = [employee]
+                            
+                            employeeTableViewCell = (subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! EmployeeTableViewCell)
+                        }
                         
-                        employeeTableViewCell = (subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! EmployeeTableViewCell)
+                        it("attempts to fetch the profile photo") {
+                            expect(fakeSDWebImageWrapper.capturedGetImageURL).to(equal(URL(string: "https://not.a.real.photo.com/99")!))
+                        }
+                        
+                        describe("when image fetch is successful") {
+                            var bogusImage: UIImage!
+                            
+                            beforeEach {
+                                bogusImage = UIImage()
+                                
+                                fakeSDWebImageWrapper.capturedGetImageCompletionHandler?(bogusImage)
+                            }
+                            
+                            it("updates the profile image view image with the fetched image") {
+                                expect(employeeTableViewCell.profilePhotoImageView.image).to(equal(bogusImage))
+                            }
+                        }
+                        
+                        describe("when image fetch fails") {
+                            beforeEach {
+                                fakeSDWebImageWrapper.capturedGetImageCompletionHandler?(nil)
+                            }
+                            
+                            it("does nothing") {
+                                expect(employeeTableViewCell.profilePhotoImageView.image).toNot(beNil())
+                            }
+                        }
                     }
                     
-                    it("returns a fully loaded employee table view cell") {
-                        expect(employeeTableViewCell.fullnameLabel.text).to(equal("Billy Goat"))
-                        expect(employeeTableViewCell.imageView).toNot(beNil())
-                        expect(employeeTableViewCell.emailLabel.text).to(equal("billy@goat.com"))
-                        expect(employeeTableViewCell.teamLabel.text).to(equal("horns"))
-                        expect(employeeTableViewCell.typeLabel.text).to(equal("Full Time"))
-                        expect(employeeTableViewCell.phoneNumberLabel.text).to(equal("333-333-3333"))
-                        expect(employeeTableViewCell.biographyLabel.text).to(equal("Just an ordinary billy goat"))
+                    describe("when a user DOES NOT have a profile photo") {
+                        beforeEach {
+                            subject.dataSource = fakeDeserializer.stubbedEmployees
+                            
+                            employeeTableViewCell = (subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! EmployeeTableViewCell)
+                        }
+                        
+                        it("returns a fully loaded employee table view cell") {
+                            expect(employeeTableViewCell.fullnameLabel.text).to(equal("Billy Goat"))
+                            expect(employeeTableViewCell.imageView).toNot(beNil())
+                            expect(employeeTableViewCell.emailLabel.text).to(equal("billy@goat.com"))
+                            expect(employeeTableViewCell.teamLabel.text).to(equal("horns"))
+                            expect(employeeTableViewCell.typeLabel.text).to(equal("Full Time"))
+                            expect(employeeTableViewCell.phoneNumberLabel.text).to(equal("333-333-3333"))
+                            expect(employeeTableViewCell.biographyLabel.text).to(equal("Just an ordinary billy goat"))
+                        }
                     }
                 }
             }
