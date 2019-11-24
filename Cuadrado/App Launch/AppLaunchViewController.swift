@@ -1,6 +1,10 @@
 import UIKit
 
 class AppLaunchViewController: UIViewController {
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     // MARK: - Public properties
 
     var employeeNetworkService: EmployeeNetworkServiceProtocol = EmployeeNetworkService()
@@ -9,7 +13,12 @@ class AppLaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+        
         employeeNetworkService.getEmployees { [weak self] result in
+            self?.activityIndicatorView.stopAnimating()
+            
             self?.presentCuadradoVieController(result: result)
         }
     }

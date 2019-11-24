@@ -18,7 +18,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cuadrado-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Nhr-iL-uaZ" userLabel="cuadradoLogoImageView">
                                 <rect key="frame" x="145" y="386" width="124" height="124"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="VtU-mu-Iqb">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="VtU-mu-Iqb">
                                 <rect key="frame" x="188.5" y="775" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
@@ -33,6 +33,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5I1-CY-nBd"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="VtU-mu-Iqb" id="SHF-bk-Hv6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hE7-6f-4M6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -27,6 +27,11 @@ class AppLaunchViewControllerSpec: QuickSpec {
                 _ = subject.view
             }
             
+            it("shows the activity indicator view") {
+                expect(subject.activityIndicatorView.isHidden).to(beFalsy())
+                expect(subject.activityIndicatorView.isAnimating).to(beTruthy())
+            }
+            
             describe("retrieving the employees") {
                 var result: Result<[Employee], APIClientError>!
                 var cuadradoViewController: CuadradoViewController!
@@ -44,6 +49,11 @@ class AppLaunchViewControllerSpec: QuickSpec {
                     expect(fakeStoryboardLoader.capturedLoadName).to(equal("CuadradoViewController"))
                     expect(cuadradoViewController.modalPresentationStyle).to(equal(.fullScreen))
                     expect(cuadradoViewController.employeesResult).to(equal(result))
+                }
+                
+                it("stops animating the activity indicator") {
+                    expect(subject.activityIndicatorView.isHidden).to(beTruthy())
+                    expect(subject.activityIndicatorView.isAnimating).to(beFalsy())
                 }
             }
         }
