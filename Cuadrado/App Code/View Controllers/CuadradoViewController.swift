@@ -10,8 +10,10 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     
     var employeeNetworkService: EmployeeNetworkServiceProtocol = EmployeeNetworkService()
     
-    var dataSource: [Employee] = []
+    var employeesResult: Result<[Employee], APIClientError>!
     
+    var dataSource: [Employee] = []
+        
     // MARK: - View lifecycle
     
     override func viewDidLoad() {

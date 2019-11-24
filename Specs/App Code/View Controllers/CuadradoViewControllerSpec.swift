@@ -25,14 +25,6 @@ class CuadradoViewControllerSpec: QuickSpec {
                 _ = subject.view
             }
             
-            it("exists") {
-                expect(subject).toNot(beNil())
-            }
-            
-            it("has a table view") {
-                expect(subject.tableView).toNot(beNil())
-            }
-            
             it("has a spinner, spinning by default in in the view (and will hide when stopped)") {
                 expect(subject.activityIndicatorView.isAnimating).to(beTruthy())
                 expect(subject.activityIndicatorView.hidesWhenStopped).to(beTruthy())
