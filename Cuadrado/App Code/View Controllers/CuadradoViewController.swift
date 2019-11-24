@@ -4,14 +4,11 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var employeesErrorLabel: UILabel!
     
     // MARK: - Public properties
-    
-    var employeeNetworkService: EmployeeNetworkServiceProtocol = EmployeeNetworkService()
-    
+        
     var employeesResult: Result<[Employee], APIClientError>!
-    
     var dataSource: [Employee] = []
         
     // MARK: - View lifecycle
@@ -20,18 +17,6 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         setup()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        employeeNetworkService.getEmployees { [weak self] result in
-            guard let self = self else {
-                return
-            }
-            
-            self.activityIndicatorView.stopAnimating()
-        }
     }
     
     // MARK: - <UITableViewDataSource>
@@ -55,6 +40,24 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     // MARK: - Private methods
     
     private func setup() {
+        setupDataSource()
+        setupTableView()
+    }
+    
+    private func setupDataSource() {
+        switch employeesResult {
+        case .success(let employees):
+            dataSource = employees
+            
+        case .failure(_):
+            employeesErrorLabel.isHidden = false
+            
+        case .none:
+            preconditionFailure("CuadradoViewController has no employeesResult")
+        }
+    }
+    
+    private func setupTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 }

@@ -18,27 +18,35 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qgr-8C-rpC" userLabel="tableView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="Fnn-30-2w9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Vvg-Ge-VUV"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="bjR-A8-bLW" userLabel="activityIndicatorView">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error: Unable to fetch employees" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-e4-6lh" userLabel="employeesErrorLabel">
+                                <rect key="frame" x="81.5" y="438" width="251" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Qgr-8C-rpC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4WB-sl-00a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Qgr-8C-rpC" secondAttribute="bottom" id="62L-xR-uvB"/>
+                            <constraint firstItem="939-e4-6lh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eLS-sB-1yG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qgr-8C-rpC" secondAttribute="trailing" id="hav-R8-HmQ"/>
-                            <constraint firstItem="bjR-A8-bLW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qzr-Qb-YZM"/>
+                            <constraint firstItem="939-e4-6lh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rTP-uT-ihM"/>
                             <constraint firstItem="Qgr-8C-rpC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s4G-9Q-NZJ"/>
-                            <constraint firstItem="bjR-A8-bLW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wOb-eh-dEX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="bjR-A8-bLW" id="YrD-OH-a4x"/>
+                        <outlet property="employeesErrorLabel" destination="939-e4-6lh" id="idX-gm-SI6"/>
                         <outlet property="tableView" destination="Qgr-8C-rpC" id="mMJ-10-Mbi"/>
                     </connections>
                 </viewController>

@@ -7,66 +7,54 @@ class CuadradoViewControllerSpec: QuickSpec {
         describe("CuadradoViewController") {
             var subject: CuadradoViewController!
             
-            var fakeEmployeeNetworkService: FakeEmployeeNetworkService!
-            
-            // Easy access to some generated employees
-            
             var fakeDeserializer: FakeEmployeeDeserializer!
+            var fakeEmployeesResult: Result<[Employee], APIClientError>!
 
             beforeEach {
                 subject = loadStoryboard(name: "CuadradoViewController")
                 
-                fakeEmployeeNetworkService = FakeEmployeeNetworkService()
-                
-                subject.employeeNetworkService = fakeEmployeeNetworkService
+                // Easy access to some generated employees
                 
                 fakeDeserializer = FakeEmployeeDeserializer()
-                
-                _ = subject.view
             }
             
-            it("has a spinner, spinning by default in in the view (and will hide when stopped)") {
-                expect(subject.activityIndicatorView.isAnimating).to(beTruthy())
-                expect(subject.activityIndicatorView.hidesWhenStopped).to(beTruthy())
-            }
-            
-            it("has an empty employee data source") {
-                expect(subject.dataSource).to(beEmpty())
-            }
-            
-            describe("when the view will appear") {
+            describe("when employees result fetch has successfully retrieved employee array") {
                 beforeEach {
-                    subject.viewWillAppear(false)
-                }
-                
-                it("attempts to retreive the employees") {
-                    expect(fakeEmployeeNetworkService.capturedCompletionHandler).toNot(beNil())
-                }
-                
-                describe("on employee retrieval succes") {
-                    beforeEach {
-                        fakeEmployeeNetworkService.capturedCompletionHandler?(.success(fakeDeserializer.stubbedEmployees))
-                    }
+                    fakeEmployeesResult = .success(fakeDeserializer.stubbedEmployees)
                     
-                    it("removes the activity indicator view") {
-                        expect(subject.activityIndicatorView.isAnimating).to(beFalsy())
-                        expect(subject.activityIndicatorView.isHidden).to(beTruthy())
-                    }
+                    subject.employeesResult = fakeEmployeesResult
+                    
+                    _ = subject.view
                 }
                 
-                describe("on employee retrieval failure") {
-                    beforeEach {
-                        fakeEmployeeNetworkService.capturedCompletionHandler?(.failure(.sessionError))
-                    }
+                it("loads up the data source") {
+                    expect(subject.dataSource).to(equal(fakeDeserializer.stubbedEmployees))
+                }
+            }
+            
+            describe("when employees result fetch has failed") {
+                beforeEach {
+                    fakeEmployeesResult = .failure(.sessionError)
                     
-                    it("removes the activity indicator view") {
-                        expect(subject.activityIndicatorView.isAnimating).to(beFalsy())
-                        expect(subject.activityIndicatorView.isHidden).to(beTruthy())
-                    }
+                    subject.employeesResult = fakeEmployeesResult
+                    
+                    _ = subject.view
+                }
+                
+                it("displays an error message") {
+                    expect(subject.employeesErrorLabel.isHidden).to(beFalsy())
                 }
             }
             
             describe("<UITableViewDataSource>") {
+                beforeEach {
+                    fakeEmployeesResult = .success(fakeDeserializer.stubbedEmployees)
+                    
+                    subject.employeesResult = fakeEmployeesResult
+                    
+                    _ = subject.view
+                }
+                
                 describe("#numberOfSections(in:)") {
                     var numberOfSections: Int!
                     
