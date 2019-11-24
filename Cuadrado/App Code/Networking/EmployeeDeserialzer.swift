@@ -27,7 +27,7 @@ class EmployeeDeserialzer: EmployeeDeserialzerProtocol {
         }
         
         // Note: I'm only doing this based on the requirements of the document.  In "production" code, I'd do
-        // a compact map to remove the nil employees (employees without malformed data).
+        // a compact map to remove the nil employees (return employees without malformed data).
         // let finalEmployees = employees.compactMap { $0 }
         
         guard let finalEmployees = employees as? [Employee] else {
