@@ -22,6 +22,6 @@ class AppLaunchViewController: UIViewController {
         cuadradoViewController.modalPresentationStyle = .fullScreen
         cuadradoViewController.employeesResult = result
 
-        present(cuadradoViewController, animated: false, completion: nil)
+        present(cuadradoViewController, animated: false)
     }
 }
