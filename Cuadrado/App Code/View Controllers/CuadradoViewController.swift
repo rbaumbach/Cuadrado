@@ -4,7 +4,7 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     // MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var employeesErrorLabel: UILabel!
+    @IBOutlet weak var basicStatusLabel: UILabel!
     
     // MARK: - Public properties
         
@@ -47,10 +47,10 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
     private func setupDataSource() {
         switch employeesResult {
         case .success(let employees):
-            dataSource = employees
-            
+            handleSuccess(employees: employees)
+                        
         case .failure(_):
-            employeesErrorLabel.isHidden = false
+            handleFailure()
             
         case .none:
             preconditionFailure("CuadradoViewController has no employeesResult")
@@ -61,5 +61,19 @@ class CuadradoViewController: UIViewController, UITableViewDataSource {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         tableView.tableFooterView = UIView()
+    }
+    
+    private func handleSuccess(employees: [Employee]) {
+        if employees.isEmpty {
+            basicStatusLabel.text = "There are no employees"
+            
+            return
+        }
+        
+        dataSource = employees
+    }
+    
+    private func handleFailure() {
+        basicStatusLabel.isHidden = false
     }
 }

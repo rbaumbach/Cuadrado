@@ -22,7 +22,7 @@
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Vvg-Ge-VUV"/>
                                 </connections>
                             </tableView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error: Unable to fetch employees" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-e4-6lh" userLabel="employeesErrorLabel">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error: Unable to fetch employees" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="939-e4-6lh" userLabel="basicStatusLabel">
                                 <rect key="frame" x="81.5" y="438" width="251" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -41,7 +41,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="employeesErrorLabel" destination="939-e4-6lh" id="idX-gm-SI6"/>
+                        <outlet property="basicStatusLabel" destination="939-e4-6lh" id="2dm-LD-31j"/>
                         <outlet property="tableView" destination="Qgr-8C-rpC" id="mMJ-10-Mbi"/>
                     </connections>
                 </viewController>

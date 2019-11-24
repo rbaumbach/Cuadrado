@@ -19,16 +19,36 @@ class CuadradoViewControllerSpec: QuickSpec {
             }
             
             describe("when employees result fetch has successfully retrieved employee array") {
-                beforeEach {
-                    fakeEmployeesResult = .success(fakeDeserializer.stubbedEmployees)
+                describe("when there are no employees") {
+                    beforeEach {
+                        fakeEmployeesResult = .success([])
+                        
+                        subject.employeesResult = fakeEmployeesResult
+                        
+                        _ = subject.view
+                    }
+
+                    it("it displays proper message") {
+                        expect(subject.basicStatusLabel.text).to(equal("There are no employees"))
+                    }
                     
-                    subject.employeesResult = fakeEmployeesResult
-                    
-                    _ = subject.view
+                    it("it doesn't show separator lines because there is an empty footer view") {
+                        expect(subject.tableView.tableFooterView).toNot(beNil())
+                    }
                 }
                 
-                it("loads up the data source") {
-                    expect(subject.dataSource).to(equal(fakeDeserializer.stubbedEmployees))
+                describe("when there is at least one employee") {
+                    beforeEach {
+                        fakeEmployeesResult = .success(fakeDeserializer.stubbedEmployees)
+                        
+                        subject.employeesResult = fakeEmployeesResult
+                        
+                        _ = subject.view
+                    }
+                    
+                    it("loads up the data source") {
+                        expect(subject.dataSource).to(equal(fakeDeserializer.stubbedEmployees))
+                    }
                 }
             }
             
@@ -41,12 +61,11 @@ class CuadradoViewControllerSpec: QuickSpec {
                     _ = subject.view
                 }
                 
-                it("displays an error message") {
-                    expect(subject.employeesErrorLabel.isHidden).to(beFalsy())
-                }
-                
-                it("it doesn't show separator lines because there is an empty footer view") {
-                    expect(subject.tableView.tableFooterView).toNot(beNil())
+                it("displays proper error message") {
+                    let expectedErrorMessage = "Error: Unable to fetch employees"
+                    
+                    expect(subject.basicStatusLabel.isHidden).to(beFalsy())
+                    expect(subject.basicStatusLabel.text).to(equal(expectedErrorMessage))
                 }
             }
             
