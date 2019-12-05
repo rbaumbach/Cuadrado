@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+import Capsule
 @testable import Cuadrado
 
 class APIClientSpec: QuickSpec {
@@ -8,11 +9,11 @@ class APIClientSpec: QuickSpec {
             var subject: APIClient!
             
             var fakeURLSession: FakeURLSession!
-            var fakeDispatcher: FakeDispatcher!
+            var fakeDispatchQueueWrapper: FakeDispatchQueueWrapper!
 
             beforeEach {
                 fakeURLSession = FakeURLSession(configuration: .default)
-                fakeDispatcher = FakeDispatcher()
+                fakeDispatchQueueWrapper = FakeDispatchQueueWrapper()
             }
             
             it("is built with default url session configuration") {
@@ -31,7 +32,7 @@ class APIClientSpec: QuickSpec {
                 beforeEach {
                     subject = APIClient(baseURL: URL(string: "https://ryan.codes")!,
                                         urlSession: fakeURLSession,
-                                        dispatcher: fakeDispatcher)
+                                        dispatchQueueWrapper: fakeDispatchQueueWrapper)
                 }
                 
                 it("loads up the URLSession with the correct url") {
@@ -50,7 +51,7 @@ class APIClientSpec: QuickSpec {
                             let fakeData = Data("fakeData".utf8)
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, nil, nil)
-                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
+                            fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an sessionError on main queue") {
@@ -60,7 +61,7 @@ class APIClientSpec: QuickSpec {
                                 expect(error).to(matchError(APIClientError.sessionError))
                             }
                             
-                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
+                            expect(fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                     
@@ -73,7 +74,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse()
                             
                             fakeURLSession.capturedCompletionHandler?(nil, fakeHTTPURLResponse, nil)
-                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
+                            fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an sessionError") {
@@ -83,7 +84,7 @@ class APIClientSpec: QuickSpec {
                                 expect(error).to(matchError(APIClientError.sessionError))
                             }
                             
-                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
+                            expect(fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                     
@@ -97,7 +98,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse()
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, FakeURLSessionError.whocares)
-                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
+                            fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an sessionError") {
@@ -107,7 +108,7 @@ class APIClientSpec: QuickSpec {
                                 expect(error).to(matchError(APIClientError.sessionError))
                             }
                             
-                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
+                            expect(fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
 
@@ -121,7 +122,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse(url: URL(string: "https://whocares.com")!, statusCode: 999, httpVersion: "1.1", headerFields: nil)
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, nil)
-                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
+                            fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an statusErrorCode") {
@@ -131,7 +132,7 @@ class APIClientSpec: QuickSpec {
                                 expect(error).to(matchError(APIClientError.statusCodeError))
                             }
                             
-                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
+                            expect(fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                     
@@ -145,7 +146,7 @@ class APIClientSpec: QuickSpec {
                             let fakeHTTPURLResponse = HTTPURLResponse(url: URL(string: "https://whocares.com")!, statusCode: 999, httpVersion: "1.1", headerFields: nil)
                             
                             fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, nil)
-                            fakeDispatcher.capturedMainAsyncCompletionHandler?()
+                            fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler?()
                         }
                         
                         it("returns a result that has an statusErrorCode") {
@@ -155,7 +156,7 @@ class APIClientSpec: QuickSpec {
                                 expect(error).to(matchError(APIClientError.statusCodeError))
                             }
                             
-                            expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
+                            expect(fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler).toNot(beNil())
                         }
                     }
                 }
@@ -175,7 +176,7 @@ class APIClientSpec: QuickSpec {
                                                                   headerFields: nil)
                         
                         fakeURLSession.capturedCompletionHandler?(fakeData, fakeHTTPURLResponse, nil)
-                        fakeDispatcher.capturedMainAsyncCompletionHandler?()
+                        fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler?()
                     }
                     
                     it("returns a result with a json response (dictionary) on the main queue") {
@@ -187,7 +188,7 @@ class APIClientSpec: QuickSpec {
                             XCTFail("Your jsonResponse success case is failing")
                         }
                         
-                        expect(fakeDispatcher.capturedMainAsyncCompletionHandler).toNot(beNil())
+                        expect(fakeDispatchQueueWrapper.capturedMainAsyncCompletionHandler).toNot(beNil())
                     }
                 }
             }

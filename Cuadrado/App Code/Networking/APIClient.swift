@@ -1,4 +1,5 @@
 import Foundation
+import Capsule
 
 struct APIClientConstants {
     static let baseURLString = "https://s3.amazonaws.com"
@@ -19,7 +20,7 @@ class APIClient: APIClientProtocol {
     
     let baseURL: URL
     let urlSession: URLSessionProtocol
-    let dispatcher: DispatcherProtocol
+    let dispatchQueueWrapper: DispatchQueueWrapperProtocol
     
     // MARK: - Init methods
     
@@ -31,10 +32,10 @@ class APIClient: APIClientProtocol {
     
     init(baseURL: URL,
          urlSession: URLSessionProtocol = URLSession(configuration: .default),
-         dispatcher: DispatcherProtocol = Dispatcher()) {
+         dispatchQueueWrapper: DispatchQueueWrapperProtocol = DispatchQueueWrapper()) {
         self.baseURL = baseURL
         self.urlSession = urlSession
-        self.dispatcher = dispatcher
+        self.dispatchQueueWrapper = dispatchQueueWrapper
     }
     
     // MARK: - Public methods
@@ -58,7 +59,7 @@ class APIClient: APIClientProtocol {
             }
             
             guard let response = response as? HTTPURLResponse else {
-                self.dispatcher.mainAsync {
+                self.dispatchQueueWrapper.mainAsync {
                     completionHandler(.failure(.sessionError))
                 }
                 
@@ -66,7 +67,7 @@ class APIClient: APIClientProtocol {
             }
             
             guard let data = data else {
-                self.dispatcher.mainAsync {
+                self.dispatchQueueWrapper.mainAsync {
                     completionHandler(.failure(.sessionError))
                 }
                 
@@ -74,7 +75,7 @@ class APIClient: APIClientProtocol {
             }
             
             guard error == nil else {
-                self.dispatcher.mainAsync {
+                self.dispatchQueueWrapper.mainAsync {
                     completionHandler(.failure(.sessionError))
                 }
                 
@@ -82,7 +83,7 @@ class APIClient: APIClientProtocol {
             }
             
             guard response.statusCode == 200 else {
-                self.dispatcher.mainAsync {
+                self.dispatchQueueWrapper.mainAsync {
                     completionHandler(.failure(.statusCodeError))
                 }
                 
@@ -95,7 +96,7 @@ class APIClient: APIClientProtocol {
                 return
             }
             
-            self.dispatcher.mainAsync {
+            self.dispatchQueueWrapper.mainAsync {
                 completionHandler(.success(jsonResponse))
             }
         }

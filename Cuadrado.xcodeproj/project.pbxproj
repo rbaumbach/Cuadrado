@@ -33,7 +33,6 @@
 		9421A2EC2389C3CF00E5982F /* FakeEmployeeNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */; };
 		9421A2EE2389E97200E5982F /* FakeEmployeeDeserialzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */; };
 		9421A2F22389F16200E5982F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2F12389F16200E5982F /* Utils.swift */; };
-		9421A2F42389F18500E5982F /* FakeDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2F32389F18500E5982F /* FakeDispatcher.swift */; };
 		9457DE7F238ACDAD00FFE049 /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457DE7D238ACDAD00FFE049 /* EmployeeTableViewCell.swift */; };
 		9457DE80238ACDAD00FFE049 /* EmployeeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9457DE7E238ACDAD00FFE049 /* EmployeeTableViewCell.xib */; };
 		9457DE83238ACDD300FFE049 /* EmployeeTableViewCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9457DE82238ACDD300FFE049 /* EmployeeTableViewCellSpec.swift */; };
@@ -83,7 +82,6 @@
 		9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmployeeNetworkService.swift; sourceTree = "<group>"; };
 		9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmployeeDeserialzer.swift; sourceTree = "<group>"; };
 		9421A2F12389F16200E5982F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		9421A2F32389F18500E5982F /* FakeDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDispatcher.swift; sourceTree = "<group>"; };
 		9457DE7D238ACDAD00FFE049 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		9457DE7E238ACDAD00FFE049 /* EmployeeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeeTableViewCell.xib; sourceTree = "<group>"; };
 		9457DE82238ACDD300FFE049 /* EmployeeTableViewCellSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCellSpec.swift; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				9421A2E92389C20C00E5982F /* FakeAPIClient.swift */,
-				9421A2F32389F18500E5982F /* FakeDispatcher.swift */,
 				9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */,
 				9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */,
 				9457DE8A238AE31200FFE049 /* FakeSDWebImageWrapper.swift */,
@@ -576,7 +573,6 @@
 				9421A2E42389BEE800E5982F /* EmployeeDeserialzerSpec.swift in Sources */,
 				94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */,
 				9404876F23896E93003F6F34 /* AppDelegateSpec.swift in Sources */,
-				9421A2F42389F18500E5982F /* FakeDispatcher.swift in Sources */,
 				9421A2EC2389C3CF00E5982F /* FakeEmployeeNetworkService.swift in Sources */,
 				9421A2D92389AB8200E5982F /* FakeURLSession.swift in Sources */,
 			);
