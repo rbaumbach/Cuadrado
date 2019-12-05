@@ -13,20 +13,6 @@ class Dispatcher: DispatcherProtocol {
     }
 }
 
-// MARK: - StoryboardLoader
-
-protocol StoryboardLoaderProtocol {
-    func load(name: String) -> UIViewController
-}
-
-class StoryboardLoader: StoryboardLoaderProtocol {
-    func load(name: String) -> UIViewController {
-        let storyboard = UIStoryboard(name: name, bundle: nil)
-        
-        return storyboard.instantiateInitialViewController()!
-    }
-}
-
 // MARK: - AppLaunchLoader
 
 protocol AppLaunchLoaderProtocol {

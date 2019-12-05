@@ -1,10 +1,11 @@
 import UIKit
+import Capsule
 import Utensils
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Public  properties
     
-    var storyboardLoader: StoryboardLoaderProtocol = StoryboardLoader()
+    var storyboardBuilder: StoryboardBuilderProtocol = StoryboardBuilder()
     var appLaunchLoader: AppLaunchLoaderProtocol = AppLaunchLoader()
     var appLaunchViewController: AppLaunchViewController?
     
@@ -36,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Private methods
     
     private func presentCuadradoVieController(result: Result<[Employee], APIClientError>) {
-        let cuadradoViewController = storyboardLoader.load(name: "CuadradoViewController") as! CuadradoViewController
+        let cuadradoViewController = storyboardBuilder.buildInitialViewController(name: "CuadradoViewController") as! CuadradoViewController
         
         cuadradoViewController.modalPresentationStyle = .fullScreen
         cuadradoViewController.employeesResult = result
