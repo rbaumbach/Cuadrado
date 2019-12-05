@@ -22,8 +22,6 @@
 		940487842389A0C6003F6F34 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940487832389A0C6003F6F34 /* APIClient.swift */; };
 		940F9C6A2397131C0028937B /* CustomAppLaunchLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F9C692397131C0028937B /* CustomAppLaunchLoadingView.swift */; };
 		940F9C72239763E10028937B /* SceneDelegateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F9C71239763E10028937B /* SceneDelegateSpec.swift */; };
-		9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2D52389AAE400E5982F /* FoundationProtocols.swift */; };
-		9421A2D92389AB8200E5982F /* FakeURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2D82389AB8200E5982F /* FakeURLSession.swift */; };
 		9421A2DC2389AD4400E5982F /* APIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2DB2389AD4400E5982F /* APIClientSpec.swift */; };
 		9421A2DE2389BA4100E5982F /* EmployeeDeserialzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2DD2389BA4100E5982F /* EmployeeDeserialzer.swift */; };
 		9421A2E42389BEE800E5982F /* EmployeeDeserialzerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9421A2E32389BEE800E5982F /* EmployeeDeserialzerSpec.swift */; };
@@ -71,8 +69,6 @@
 		940487832389A0C6003F6F34 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		940F9C692397131C0028937B /* CustomAppLaunchLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAppLaunchLoadingView.swift; sourceTree = "<group>"; };
 		940F9C71239763E10028937B /* SceneDelegateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateSpec.swift; sourceTree = "<group>"; };
-		9421A2D52389AAE400E5982F /* FoundationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationProtocols.swift; sourceTree = "<group>"; };
-		9421A2D82389AB8200E5982F /* FakeURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLSession.swift; sourceTree = "<group>"; };
 		9421A2DB2389AD4400E5982F /* APIClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientSpec.swift; sourceTree = "<group>"; };
 		9421A2DD2389BA4100E5982F /* EmployeeDeserialzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDeserialzer.swift; sourceTree = "<group>"; };
 		9421A2E32389BEE800E5982F /* EmployeeDeserialzerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDeserialzerSpec.swift; sourceTree = "<group>"; };
@@ -183,7 +179,6 @@
 			children = (
 				9404877D23899BEB003F6F34 /* Models */,
 				940487852389A0CF003F6F34 /* Networking */,
-				9421A2D42389AAD600E5982F /* Protocols */,
 				9421A2EF2389F13100E5982F /* Utils */,
 				9421A2F02389F14E00E5982F /* View Controllers */,
 				9457DE7C238ACD6000FFE049 /* Views */,
@@ -266,14 +261,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		9421A2D42389AAD600E5982F /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				9421A2D52389AAE400E5982F /* FoundationProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		9421A2D72389AB7500E5982F /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,7 +268,6 @@
 				9421A2ED2389E97200E5982F /* FakeEmployeeDeserialzer.swift */,
 				9421A2EB2389C3CF00E5982F /* FakeEmployeeNetworkService.swift */,
 				9457DE8A238AE31200FFE049 /* FakeSDWebImageWrapper.swift */,
-				9421A2D82389AB8200E5982F /* FakeURLSession.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -542,7 +528,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9421A2D62389AAE400E5982F /* FoundationProtocols.swift in Sources */,
 				940F9C6A2397131C0028937B /* CustomAppLaunchLoadingView.swift in Sources */,
 				940487482388ACDE003F6F34 /* CuadradoViewController.swift in Sources */,
 				9421A2F22389F16200E5982F /* Utils.swift in Sources */,
@@ -574,7 +559,6 @@
 				94048773238974D9003F6F34 /* CuadradoViewControllerSpec.swift in Sources */,
 				9404876F23896E93003F6F34 /* AppDelegateSpec.swift in Sources */,
 				9421A2EC2389C3CF00E5982F /* FakeEmployeeNetworkService.swift in Sources */,
-				9421A2D92389AB8200E5982F /* FakeURLSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
