@@ -33,15 +33,11 @@
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>AppLaunchViewController</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
-	<string>AppLaunchViewController</string>
-	<key>UIMainStoryboardFile</key>
 	<string>AppLaunchViewController</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

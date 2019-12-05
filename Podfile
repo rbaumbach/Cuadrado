@@ -5,6 +5,9 @@ use_frameworks!
 inhibit_all_warnings!
 
 def shared_pods
+  pod "Capsule", "0.1.2"
+  pod "Utensils", "0.0.9"
+
   pod "SDWebImage", "5.3.2"
 end
 
